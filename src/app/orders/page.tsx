@@ -72,7 +72,7 @@ const Orders = () => {
   return (
     <Layout>
       <Box>
-        <CustomTable rows={rows} headCells={headCells} />
+        <CustomTable rows={rows} headCells={headCells} pageType="orders"/>
       </Box>
     </Layout>
   );

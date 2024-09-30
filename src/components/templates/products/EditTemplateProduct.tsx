@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import { IProduct } from "@/interfaces/IProduct";
 import { ProductEditValidator } from "@/validators/ProductEditValidator";
 
-const EditTemplate: React.FC = () => {
+const EditTemplateProduct: React.FC = () => {
   const formik = useFormik<IProduct>({
     initialValues: {
       description: "",
@@ -88,4 +88,4 @@ const EditTemplate: React.FC = () => {
   );
 };
 
-export default EditTemplate;
+export default EditTemplateProduct;

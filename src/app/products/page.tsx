@@ -66,7 +66,7 @@ const Products = () => {
   return (
     <Layout>
       <Box>
-        <CustomTable rows={rows} headCells={headCells} />
+        <CustomTable rows={rows} headCells={headCells} pageType="products"/>
       </Box>
     </Layout>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import EditTemplate from "@/components/templates/products/EditTemplate";
+import EditTemplateProduct from "@/components/templates/products/EditTemplateProduct";
 
 interface ProductEditProps {
   params: { slug: string };
@@ -8,7 +8,7 @@ interface ProductEditProps {
 
 const ProductEdit: React.FC<ProductEditProps> = ({ params }) => {
   
-  return <EditTemplate/>;
+  return <EditTemplateProduct/>;
 }
 
 export default ProductEdit;

@@ -1,4 +1,3 @@
-import { describe } from 'node:test';
 import * as Yup from 'yup';
 
 export const ProductEditValidator = () => {

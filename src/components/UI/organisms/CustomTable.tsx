@@ -82,9 +82,10 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 interface CustomTableProps {
   rows: any[];
   headCells: any;
+  pageType: "orders" | "products";
 }
 
-export default function CustomTable({ rows, headCells }: CustomTableProps) {
+export default function CustomTable({ rows, headCells, pageType }: CustomTableProps) {
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<string>("");
   const [selected, setSelected] = React.useState<readonly number[]>([]);
@@ -151,9 +152,12 @@ export default function CustomTable({ rows, headCells }: CustomTableProps) {
   };
 
   /* TableBody > TableRow */
-  const handleClick = (event: React.MouseEvent<unknown>, id: number, router: AppRouterInstance) => {
-    
-    router.push(`/products/edit/${id}`);
+  const handleClick = (
+    event: React.MouseEvent<unknown>,
+    id: number,
+    router: AppRouterInstance
+  ) => {
+    router.push(`${pageType}/edit/${id}`);
     console.log(`Id: ${id}`);
 
     const selectedIndex = selected.indexOf(id);
@@ -205,7 +209,6 @@ export default function CustomTable({ rows, headCells }: CustomTableProps) {
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
     [order, orderBy, page, rowsPerPage, rows]
   );
-
 
   const router = useRouter();
 
