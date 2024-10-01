@@ -72,7 +72,7 @@ const Orders = () => {
   return (
     <Layout>
       <Box>
-        <CustomTable rows={rows} headCells={headCells} pageType="orders"/>
+        <CustomTable rows={rows} headCells={headCells} editPath="/orders/edit"/>
       </Box>
     </Layout>
   );

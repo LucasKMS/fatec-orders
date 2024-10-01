@@ -82,10 +82,10 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 interface CustomTableProps {
   rows: any[];
   headCells: any;
-  pageType: "orders" | "products";
+  editPath: string;
 }
 
-export default function CustomTable({ rows, headCells, pageType }: CustomTableProps) {
+export default function CustomTable({ rows, headCells, editPath }: CustomTableProps) {
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<string>("");
   const [selected, setSelected] = React.useState<readonly number[]>([]);
@@ -155,9 +155,10 @@ export default function CustomTable({ rows, headCells, pageType }: CustomTablePr
   const handleClick = (
     event: React.MouseEvent<unknown>,
     id: number,
-    router: AppRouterInstance
+    router: AppRouterInstance,
+    editPath: string
   ) => {
-    router.push(`${pageType}/edit/${id}`);
+    router.push(`${editPath}/${id}`);
     console.log(`Id: ${id}`);
 
     const selectedIndex = selected.indexOf(id);
@@ -238,7 +239,7 @@ export default function CustomTable({ rows, headCells, pageType }: CustomTablePr
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.id, router)}
+                    onClick={(event) => handleClick(event, row.id, router, editPath)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
