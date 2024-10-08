@@ -1,13 +1,17 @@
 "use client";
 
 import { TextField, MenuItem, Select, Button, Box } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "@/components/UI/organisms/Layout";
 import { useFormik } from "formik";
 import { IProduct } from "@/interfaces/IProduct";
 import { ProductEditValidator } from "@/validators/ProductEditValidator";
 
-const EditTemplateProduct: React.FC = () => {
+interface EditTemplateProps {
+  product?: IProduct;
+}
+
+const EditTemplateProduct: React.FC<EditTemplateProps> = ({ product }) => {
   const formik = useFormik<IProduct>({
     initialValues: {
       description: "",
@@ -23,7 +27,16 @@ const EditTemplateProduct: React.FC = () => {
     },
   });
 
-  const { handleSubmit, values, handleChange, setFieldValue, errors } = formik;
+  const { handleSubmit, values, handleChange, setFieldValue, errors, setValues } = formik;
+
+  useEffect(() => {
+    if(!product) return;
+
+      const {id, ...prod} = product;
+
+      setValues(prod);
+
+  }, [product, setValues])
 
   return (
     <Layout>
@@ -72,9 +85,9 @@ const EditTemplateProduct: React.FC = () => {
           onChange={(e) => setFieldValue("flavor", e.target.value)}
         >
           <MenuItem value=""> --Não Informado-- </MenuItem>
-          <MenuItem value="morango">Morango</MenuItem>
-          <MenuItem value="chocolate">Chocolate</MenuItem>
-          <MenuItem value="abacaxi">Abacaxi</MenuItem>
+          <MenuItem value="Morango">Morango</MenuItem>
+          <MenuItem value="Chocolate">Chocolate</MenuItem>
+          <MenuItem value="Abacaxi">Abacaxi</MenuItem>
         </Select>
         <Button variant="outlined" color="secondary">
           Cancelar
